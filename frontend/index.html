@@ -25,19 +25,20 @@ label { display: block; margin-top: 1em; }
 <button type="submit">Book</button>
 </form>
 <script>
+const API_BASE = 'http://localhost:8000';
 async function loadRooms(){
-  const res = await fetch('/rooms');
+  const res = await fetch(`${API_BASE}/rooms`);
   const data = await res.json();
   const ul = document.getElementById('rooms');
   ul.innerHTML = data.map(r => `<li>${r.id} - ${r.name}</li>`).join('');
 }
 async function addRoom(){
   const name = document.getElementById('roomName').value;
-  await fetch('/rooms', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name})});
+  await fetch(`${API_BASE}/rooms`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name})});
   loadRooms();
 }
 async function loadBookings(){
-  const res = await fetch('/bookings');
+  const res = await fetch(`${API_BASE}/bookings`);
   const data = await res.json();
   const ul = document.getElementById('bookings');
   ul.innerHTML = data.map(b => `<li>${b.title} (${b.start} - ${b.end})</li>`).join('');
@@ -50,7 +51,7 @@ async function createBooking(e){
     start: document.getElementById('start').value,
     end: document.getElementById('end').value
   };
-  const res = await fetch('/bookings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+  const res = await fetch(`${API_BASE}/bookings`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
   if(res.ok){
     loadBookings();
   }else{

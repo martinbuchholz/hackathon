@@ -19,8 +19,9 @@ API docs are available at `http://localhost:8000/docs`.
 ## Frontend
 
 A simple HTML/JavaScript page is located in `frontend/index.html`.
-Open it in your browser after starting the backend. It calls the API to list
-and create rooms and bookings.
+Open it in your browser after starting the backend. The page uses absolute
+URLs pointing to `http://localhost:8000` for all API requests, so ensure the
+backend is running at this address.
 
 ## Tests
 
