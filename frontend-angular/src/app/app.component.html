@@ -1,0 +1,19 @@
+<h1>Rooms</h1>
+<ul>
+  <li *ngFor="let r of rooms">{{r.id}} - {{r.name}}</li>
+</ul>
+<input #roomName placeholder="Room name">
+<button (click)="addRoom(roomName.value); roomName.value=''">Add Room</button>
+
+<h1>Bookings</h1>
+<ul>
+  <li *ngFor="let b of bookings">{{b.title}} ({{b.start}} - {{b.end}})</li>
+</ul>
+
+<form (ngSubmit)="createBooking()">
+  <label>Room ID <input [(ngModel)]="form.roomId" name="roomId"></label>
+  <label>Title <input [(ngModel)]="form.title" name="title"></label>
+  <label>Start <input type="datetime-local" [(ngModel)]="form.start" name="start"></label>
+  <label>End <input type="datetime-local" [(ngModel)]="form.end" name="end"></label>
+  <button type="submit">Book</button>
+</form>
